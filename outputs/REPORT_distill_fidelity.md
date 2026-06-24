@@ -48,9 +48,9 @@ DeepSeek-V4-Distill answers the **same 60 questions** as GLM-5.1 (its prompts ar
 | Claude-4.6-TI | 40 | 0.42 | 4.3 | short | 0 | 0 | reconstruction |
 | Opus-4.6-filtered | 40 | 0.17 | 7.9 | med | 0 | 0 | surface-filtered |
 | angrygiraffe (synthetic) | 40 | 0.05 | 5.5 | short | 0 | 0 | synthetic |
-| Roman-Claude (direct) | 35* | 0.00 | 0.5 | tiny | 0 | 0 | direct-answer |
+| Roman-Claude (direct) | 40 | 0.03 | 0.5 | tiny | 0 | 0 | direct-answer |
 
-By method group (unweighted dataset means): native-capture CCR **1.25**, reconstruction/synthetic **0.38**, filtered/direct **0.09**.
+By method group (unweighted dataset means): native-capture CCR **1.25**, reconstruction/synthetic **0.38**, filtered/direct **0.10**.
 
 **But length is the dominant confounder.** Pearson(log chars, CCR) = **0.654** — length predicts closure *better than critique density does* (Pearson 0.31). Native traces average **11,007 chars**; reconstructions **1,838** (6× shorter). When we restrict to a comparable length band (1k–8k chars), the native-vs-reconstruction gap shrinks from 3.2× to **2.3× (native 0.95 vs reconstruction 0.42)**.
 

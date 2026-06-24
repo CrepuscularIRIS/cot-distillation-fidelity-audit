@@ -34,8 +34,8 @@ pipeline, and per-trace length are not separated by this observational compariso
 
 Across all 10 datasets the closure ordering is qwen 2.08 > glm 1.67 > kimi 1.30 >
 claude47-TI 0.68 > deepseek 0.60 ≈ gemini 0.60 > claude46-TI 0.42 > opus-filtered
-0.17 > angrygiraffe 0.05 > roman 0.00. By distillation method (unweighted dataset
-means): native-capture 1.25, reconstruction/synthetic 0.38, filtered/direct 0.09 —
+0.18 > angrygiraffe 0.05 > roman 0.03. By distillation method (unweighted dataset
+means): native-capture 1.25, reconstruction/synthetic 0.38, filtered/direct 0.10 —
 but see the length caveat below: the one *short* native set (DeepSeek) ranks with the
 reconstructions, so method and length are not separable at the dataset level.
 

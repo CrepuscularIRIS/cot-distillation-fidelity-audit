@@ -2,7 +2,7 @@
 
 # Round 4 — Convergence Analysis
 
-> Opus 4.8 judge over 435 traces across 10 distillation datasets (Jackrong, Roman, Opus families).
+> Opus 4.8 judge over 440 traces across 10 distillation datasets (Jackrong, Roman, Opus families).
 > Judge self-consistency: 94.3% within-1 CCR, mean abs diff 0.37. Opus-vs-Kimi calibration: Opus is the stricter judge (1.2 vs 1.8, 77% within-1).
 
 ## 1. The data overturned the prior — and gave a sharper thesis
@@ -22,13 +22,13 @@
 | claude46_ti | 40 | 0.42 | 0.05 | 0.03 | 4.3 | 0 | 0 | reconstruction |
 | nohurry_opus | 40 | **0.17** | 0.00 | 0.00 | 7.9 | 0 | 0 | filtered |
 | angrygiraffe | 40 | **0.05** | 0.03 | 0.03 | 5.5 | 0 | 0 | synthetic |
-| roman_claude | 35 | **0.00** | 0.00 | 0.00 | 0.5 | 0 | 0 | direct-answer |
+| roman_claude | 40 | **0.03** | 0.00 | 0.00 | 0.5 | 0 | 0 | direct-answer |
 
 The Claude/Opus-*derived* sets occupy the **bottom**, not the top. But this is not "Claude reasons worse" — none of these are native Claude thinking. They are **reconstructions** (TraceInversion: a 4B model regenerates a plausible CoT), **synthetic** CoT (angrygiraffe), **surface-filtered** (nohurry), or **direct answers** (roman). The reframed thesis is stronger and more original than the prior:
 
 > **Critique-correction closure is a property of the distillation *method*, not the teacher's brand. Native-capture distillation (recording the teacher's actual `<think>` stream) preserves closure topology. Reconstruction / synthesis / surface-filtering keep the *vocabulary* of critique while destroying its *topology*.**
 
-By method group: **native-capture ccr=1.23 (n=240) vs reconstruction/synthetic 0.38 (n=120) vs filtered/direct 0.09 (n=75)** — a 3.2× / 13× gap.
+By method group (unweighted dataset means): **native-capture 1.25 vs reconstruction/synthetic 0.38 vs filtered/direct 0.10** — a ~3.3× / ~13× gap. (Method and trace length are entangled — see §2 — so read this as descriptive, not a clean method effect.)
 
 ## 2. The natural experiment (the clean, confound-free core)
 
@@ -38,7 +38,7 @@ GLM and DeepSeek-V4 answer the **same 60 questions** (DeepSeek-V4-Distill prompt
 - DeepSeek has *higher* critique density (8.66 vs 7.34) yet lower closure, and **0% loop topology vs GLM 5%**.
 - DeepSeek's dominant failure mode: `surface_marker_only` (34/60) — ritual "wait/however" with no coupled correction.
 
-This isolates teacher cognitive style from question difficulty: holding the method (native-capture) and questions fixed, GLM's teacher produces genuinely coupled self-correction far more often than DeepSeek's.
+This holds the question and method fixed — isolating those two confounds, though not the teacher's full training pipeline or trace length: on identical questions, GLM traces show genuinely coupled self-correction far more often than DeepSeek's.
 
 ## 3. Hypothesis survival (Opus H1–H5, Gemini lenses)
 
