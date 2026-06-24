@@ -120,10 +120,16 @@ The audit toolkit (`src/distill_audit/`) is API-agnostic; point `DISTILL_AUDIT_E
 
 ## Status
 
-- ✅ Tracks complete: Jackrong, Roman, and Opus dataset families fully analyzed (440 traces).
-- ⏳ **Round 6 (H4):** testing whether a model *trained on* low-closure data itself reasons
-  with low closure — `Jackrong/Qwopus3.6-27B-v1-preview`. If yes, this audit becomes a
-  *predictive* training-data filter.
+- ✅ **Track A (this release): complete.** Jackrong, Roman, and Opus dataset families fully
+  analyzed — 440 traces, all judged, reports + machine-readable scores in `outputs/`.
+- 🗺️ **Next (deferred): model-behavioral validation** — see **[`ROADMAP.md`](ROADMAP.md)**.
+  - *Round 6:* generate `<think>` from the trained **distillation students** and test whether a
+    model's closure is inherited from its training data — a *controlled* lift of the natural
+    experiment (`Qwen3.5-9B-GLM5.1-Distill` vs `Qwen3.5-9B-DeepSeek-V4-Flash`, same base/scale)
+    plus a cross-scale leg (Qwopus 9B vs 27B). Tooling is in `scripts/gen_model_traces.py` +
+    `scripts/h4_prep_and_struct.py`.
+  - *Round 7:* benchmark-score those models and test whether measured closure correlates with
+    reasoning accuracy.
 - ⏸ Parked with justification: LSI (needs reverse-problem generation), SC/ToM lenses
   (data is solitary problem-solving), value-anchoring (refusals cleaned from data).
 

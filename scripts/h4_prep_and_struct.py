@@ -1,14 +1,15 @@
 #!/usr/bin/env python3
-"""Round 6 / H4 step 2: given outputs/qwopus_traces.jsonl (model-generated),
+"""Round 6 / H4 step 2 (model-agnostic): given a model's generated traces jsonl,
 (a) compute the zero-API structural + aesthetic metrics for a quick closure read,
-(b) write judge batches in the SAME item format the other 440 traces used, so the
-Qwopus CCR is directly comparable.
+(b) write judge batches in the SAME item format the audited 440 traces used, so the
+model's CCR is directly comparable.
 
-Run (plain python, no GPU/API):  python scripts/h4_prep_and_struct.py
-Then judge outputs/batches/qwopus_h4_*.json with the standard Opus rubric workflow.
+Usage:  python scripts/h4_prep_and_struct.py --traces outputs/h4_glm9b_traces.jsonl --tag glm9b
+Then judge outputs/batches/<tag>_*.json with the standard Opus rubric workflow.
 """
 from __future__ import annotations
 
+import argparse
 import json
 import logging
 import sys
@@ -24,17 +25,9 @@ logging.basicConfig(level=logging.INFO, format="%(asctime)s %(levelname)s %(mess
 log = logging.getLogger("h4_prep")
 
 OUT = ROOT / "outputs"
-TRACES = OUT / "qwopus_traces.jsonl"
-METRICS = OUT / "qwopus_metrics.jsonl"
 BATCH_DIR = OUT / "batches"
 HEAD_TAIL = 4500
 BATCH_SIZE = 5
-
-# dataset CCR baselines (from report_cross_dataset.json) for the H4 read-out
-BASELINE_CCR = {"qwen": 2.075, "glm": 1.667, "kimi": 1.30, "deepseek": 0.60,
-                "claude46_ti": 0.425, "nohurry_opus": 0.175, "roman_claude": 0.025}
-# Qwopus training mix (model card): primarily Claude-Distillation + Kimi + Qwen
-TRAIN_MIX = ["(primarily) Claude-Distillation ~low", "Kimi 1.30", "Qwen 2.08"]
 
 
 def trunc(text: str, n: int = HEAD_TAIL) -> str:
@@ -44,19 +37,25 @@ def trunc(text: str, n: int = HEAD_TAIL) -> str:
 
 
 def main() -> None:
-    if not TRACES.exists():
-        log.error("missing %s — run gen_qwopus_traces.py first", TRACES); return
-    recs = [json.loads(x) for x in TRACES.read_text().splitlines() if x.strip()]
-    log.info("loaded %d qwopus traces", len(recs))
+    ap = argparse.ArgumentParser()
+    ap.add_argument("--traces", required=True, help="path to <model>_traces.jsonl")
+    ap.add_argument("--tag", required=True, help="model label (used for outputs)")
+    args = ap.parse_args()
 
-    # --- structural + aesthetic metrics (zero API) ---
-    rae, rtden, dens, oed_hits, ear_hits, n_closed = [], [], [], 0, 0, 0
-    with METRICS.open("w") as fh:
+    traces = Path(args.traces)
+    if not traces.exists():
+        log.error("missing %s", traces); return
+    recs = [json.loads(x) for x in traces.read_text().splitlines() if x.strip()]
+    log.info("[%s] loaded %d traces", args.tag, len(recs))
+
+    rae, rtden, oed_hits, n_closed = [], [], 0, 0
+    metrics_path = OUT / f"{args.tag}_metrics.jsonl"
+    with metrics_path.open("w") as fh:
         for r in recs:
             reasoning = r.get("reasoning", "")
             m = structural.all_metrics(reasoning)
             a = aesthetics.all_aesthetics(reasoning)
-            row = {"uid": r["uid"], "dataset": "qwopus_gen", **m, **a,
+            row = {"uid": r["uid"], "dataset": args.tag, **m, **a,
                    "reasoning_chars": r.get("reasoning_chars", len(reasoning)),
                    "closed_think": r.get("closed_think")}
             fh.write(json.dumps(row, ensure_ascii=False) + "\n")
@@ -71,30 +70,27 @@ def main() -> None:
     def avg(v):
         return round(sum(v) / len(v), 3) if v else None
 
-    log.info("=== Qwopus structural read (zero-API proxy) ===")
+    log.info("=== [%s] structural read (zero-API CCR proxy) ===", args.tag)
     log.info("  n=%d  closed_think=%d/%d", len(recs), n_closed, len(recs))
-    log.info("  RAE_entropy mean=%s  (dataset-rank predictor; qwen 2.85 .. roman 1.0)", avg(rae))
-    log.info("  RT_density  mean=%s  (qwen 0.32 .. roman 0.0)", avg(rtden))
-    log.info("  traces with an overthrow marker: %d/%d (%.0f%%)",
+    log.info("  RAE_entropy mean=%s   (best dataset-rank predictor: qwen 2.85 .. roman 1.0)", avg(rae))
+    log.info("  RT_density  mean=%s   (qwen 0.32 .. roman 0.0)", avg(rtden))
+    log.info("  traces with overthrow marker: %d/%d (%.0f%%)",
              oed_hits, len(recs), 100 * oed_hits / max(len(recs), 1))
-    log.info("  training mix: %s", TRAIN_MIX)
-    log.info("  -> H4: low RAE/RT/overthrow ~ inherits the low-closure (Claude-distill) majority;")
-    log.info("         high ~ generalizes closure from the qwen/kimi minority.")
 
-    # --- judge batches (same item format as prep_batches.trace_to_item) ---
     BATCH_DIR.mkdir(parents=True, exist_ok=True)
-    for old in BATCH_DIR.glob("qwopus_h4_*.json"):
+    for old in BATCH_DIR.glob(f"{args.tag}_*.json"):
         old.unlink()
-    items = [{"uid": r["uid"], "dataset": "qwopus_gen", "teacher": "Qwopus3.6-27B-v1-preview",
+    items = [{"uid": r["uid"], "dataset": args.tag, "teacher": args.tag,
               "domain": r.get("domain", ""), "reasoning_chars": r.get("reasoning_chars", 0),
               "problem": (r.get("problem") or "")[:1500], "reasoning": trunc(r.get("reasoning", "")),
               "answer": (r.get("answer") or "")[:1200]} for r in recs if r.get("reasoning")]
     nb = 0
     for k in range(0, len(items), BATCH_SIZE):
-        (BATCH_DIR / f"qwopus_h4_{k // BATCH_SIZE:03d}.json").write_text(
+        (BATCH_DIR / f"{args.tag}_{k // BATCH_SIZE:03d}.json").write_text(
             json.dumps(items[k:k + BATCH_SIZE], ensure_ascii=False, indent=1))
         nb += 1
-    log.info("wrote %d judge batches (%d traces) -> outputs/batches/qwopus_h4_*.json", nb, len(items))
+    log.info("[%s] wrote %d judge batches (%d traces) -> outputs/batches/%s_*.json",
+             args.tag, nb, len(items), args.tag)
 
 
 if __name__ == "__main__":
