@@ -1,0 +1,9 @@
+{
+  "n": 30,
+  "opus_mean": 1.2,
+  "kimi_mean": 1.8,
+  "exact_agree_pct": 46.7,
+  "within1_agree_pct": 76.7,
+  "quadratic_weighted_kappa": 0.35,
+  "cliffs_delta_opus_vs_kimi": -0.264
+}

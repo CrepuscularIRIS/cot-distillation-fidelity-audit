@@ -1,0 +1,102 @@
+{
+  "per_dataset": {
+    "qwen": {
+      "n": 40,
+      "llm_ccr": 2.075,
+      "CE": 0.033,
+      "NRR": 0.081,
+      "BSD": 0.28,
+      "ICI": 0.168,
+      "MI_critique_answerchange": 0.0766
+    },
+    "glm": {
+      "n": 60,
+      "llm_ccr": 1.667,
+      "CE": 0.024,
+      "NRR": 0.069,
+      "BSD": 0.227,
+      "ICI": 0.128,
+      "MI_critique_answerchange": 0.4335
+    },
+    "kimi": {
+      "n": 40,
+      "llm_ccr": 1.3,
+      "CE": 0.025,
+      "NRR": 0.0,
+      "BSD": 0.136,
+      "ICI": 0.083,
+      "MI_critique_answerchange": 0.3461
+    },
+    "claude47_ti": {
+      "n": 40,
+      "llm_ccr": 0.675,
+      "CE": 0.015,
+      "NRR": 0.032,
+      "BSD": 0.119,
+      "ICI": 0.064,
+      "MI_critique_answerchange": 0.2936
+    },
+    "deepseek": {
+      "n": 60,
+      "llm_ccr": 0.6,
+      "CE": 0.031,
+      "NRR": 0.016,
+      "BSD": 0.337,
+      "ICI": 0.141,
+      "MI_critique_answerchange": 0.3955
+    },
+    "gemini": {
+      "n": 40,
+      "llm_ccr": 0.6,
+      "CE": 0.02,
+      "NRR": 0.042,
+      "BSD": 0.232,
+      "ICI": 0.116,
+      "MI_critique_answerchange": 0.5811
+    },
+    "claude46_ti": {
+      "n": 40,
+      "llm_ccr": 0.425,
+      "CE": 0.015,
+      "NRR": 0.0,
+      "BSD": 0.145,
+      "ICI": 0.073,
+      "MI_critique_answerchange": 0.1187
+    },
+    "nohurry_opus": {
+      "n": 40,
+      "llm_ccr": 0.175,
+      "CE": 0.019,
+      "NRR": 0.0,
+      "BSD": 0.072,
+      "ICI": 0.043,
+      "MI_critique_answerchange": 0.0
+    },
+    "angrygiraffe": {
+      "n": 40,
+      "llm_ccr": 0.05,
+      "CE": 0.012,
+      "NRR": 0.0,
+      "BSD": 0.084,
+      "ICI": 0.03,
+      "MI_critique_answerchange": 0.1687
+    },
+    "roman_claude": {
+      "n": 40,
+      "llm_ccr": 0.025,
+      "CE": 0.012,
+      "NRR": 0.0,
+      "BSD": 0.0,
+      "ICI": 0.0,
+      "MI_critique_answerchange": 0.0
+    }
+  },
+  "convergent_validity_pearson": {
+    "ce": 0.291,
+    "nrr": 0.061,
+    "bsd": 0.274,
+    "ici": 0.369
+  },
+  "pooled_MI_critique_answerchange": 0.3762,
+  "note_LSI": "Logical Symmetry Index = FUTURE WORK (needs reverse-problem generation), per advanced_metrics_exploration.md"
+}

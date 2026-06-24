@@ -1,0 +1,11 @@
+{
+  "pearson_log_len_vs_ccr": 0.654,
+  "mean_chars_native": 11007,
+  "mean_chars_reconstruction": 1838,
+  "length_band_1k_8k": {
+    "native_n": 152,
+    "native_ccr": 0.95,
+    "recon_n": 83,
+    "recon_ccr": 0.42
+  }
+}

@@ -1,0 +1,110 @@
+{
+  "judges_n": {
+    "opus": 90,
+    "kimi": 10,
+    "deepseek_flash": 10,
+    "minimax_m3": 27
+  },
+  "dataset_means": {
+    "deepseek": {
+      "opus": 0.48,
+      "kimi": 0.8,
+      "deepseek_flash": 0.0,
+      "minimax_m3": 0.5
+    },
+    "glm": {
+      "opus": 1.76,
+      "kimi": 2.2,
+      "deepseek_flash": 1.4,
+      "minimax_m3": 1.46
+    },
+    "claude46_ti": {
+      "opus": 0.4
+    },
+    "claude47_ti": {
+      "opus": 0.8
+    },
+    "nohurry_opus": {
+      "opus": 0.0
+    },
+    "gemini": {
+      "opus": 0.2
+    },
+    "kimi": {
+      "opus": 1.0
+    },
+    "qwen": {
+      "opus": 2.6
+    },
+    "angrygiraffe": {
+      "opus": 0.0
+    },
+    "roman_claude": {
+      "opus": 0.0
+    }
+  },
+  "ranking_spearman": {
+    "opus~kimi": 1.0,
+    "opus~deepseek_flash": 1.0,
+    "opus~minimax_m3": 1.0,
+    "kimi~deepseek_flash": 1.0,
+    "kimi~minimax_m3": 1.0,
+    "deepseek_flash~minimax_m3": 1.0
+  },
+  "paired_per_judge": {
+    "opus": {
+      "n": 25,
+      "glm_higher": 19,
+      "ds_higher": 0,
+      "tied": 6,
+      "mean_diff": 1.28
+    },
+    "kimi": {
+      "n": 5,
+      "glm_higher": 4,
+      "ds_higher": 0,
+      "tied": 1,
+      "mean_diff": 1.4
+    },
+    "deepseek_flash": {
+      "n": 5,
+      "glm_higher": 5,
+      "ds_higher": 0,
+      "tied": 0,
+      "mean_diff": 1.4
+    },
+    "minimax_m3": {
+      "n": 12,
+      "glm_higher": 8,
+      "ds_higher": 1,
+      "tied": 3,
+      "mean_diff": 1.0
+    }
+  },
+  "pairwise_qwk": {
+    "opus~kimi": {
+      "n": 10,
+      "qwk": 0.838
+    },
+    "opus~deepseek_flash": {
+      "n": 10,
+      "qwk": 0.568
+    },
+    "opus~minimax_m3": {
+      "n": 27,
+      "qwk": 0.668
+    },
+    "kimi~deepseek_flash": {
+      "n": 10,
+      "qwk": 0.355
+    },
+    "kimi~minimax_m3": {
+      "n": 8,
+      "qwk": 0.864
+    },
+    "deepseek_flash~minimax_m3": {
+      "n": 8,
+      "qwk": 0.385
+    }
+  }
+}

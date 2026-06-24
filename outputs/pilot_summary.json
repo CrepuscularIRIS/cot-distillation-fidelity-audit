@@ -1,0 +1,10 @@
+{
+  "deepseek": {
+    "n": 4,
+    "mean_ccr": 0.5
+  },
+  "glm": {
+    "n": 4,
+    "mean_ccr": 2.25
+  }
+}

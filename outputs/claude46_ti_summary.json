@@ -1,0 +1,34 @@
+{
+  "_run_status": "PARTIAL - 24/200 traces judged before Kimi account quota was exhausted (HTTP 429 'usage limit for this period'). Resume with: python3 scripts/run_dataset.py --dataset claude46_ti --sample 200 --max-tokens 16000 --delay 2.0 once the Kimi quota refreshes (next billing period).",
+  "n_judged": 24,
+  "n_skipped": 0,
+  "n_errors": 0,
+  "ccr_closure": {
+    "mean": 0.167,
+    "median": 0.0,
+    "std": 0.381,
+    "n": 24
+  },
+  "monitoring_control_coupling": {
+    "mean": 0.042,
+    "median": 0.0,
+    "std": 0.204,
+    "n": 24
+  },
+  "causal_depth_of_critique": {
+    "mean": 0,
+    "median": 0.0,
+    "std": 0.0,
+    "n": 24
+  },
+  "topology_distribution": {
+    "chain": 23,
+    "loop": 1
+  },
+  "mean_crit_density_1k": 3.243,
+  "failure_type_distribution": {
+    "redundant_check": 10,
+    "no_answer_change": 4,
+    "surface_marker_only": 4
+  }
+}

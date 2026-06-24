@@ -1,0 +1,26 @@
+{
+  "n_pairs": 60,
+  "deepseek_ccr_mean": 0.6,
+  "glm_ccr_mean": 1.667,
+  "median_paired_diff_glm_minus_ds": 1.0,
+  "pairs_glm_higher": 38,
+  "pairs_ds_higher": 4,
+  "pairs_tied": 18,
+  "matched_pairs_rank_biserial": 0.567,
+  "cliffs_delta_glm_vs_ds_unpaired": 0.513,
+  "delta_interp": "large",
+  "wilcoxon": {
+    "n_nonzero": 42,
+    "W_plus": 850,
+    "W_minus": 53,
+    "z": -4.983,
+    "p_approx": 0.0,
+    "direction": "GLM>DS"
+  },
+  "deepseek_density_mean": 8.66,
+  "glm_density_mean": 7.343,
+  "deepseek_loop_pct": 0.0,
+  "glm_loop_pct": 5.0,
+  "deepseek_overthrow_pct": 11.7,
+  "glm_overthrow_pct": 31.7
+}

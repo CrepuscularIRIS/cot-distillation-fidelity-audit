@@ -1,0 +1,170 @@
+{
+  "deepseek": {
+    "n": 16,
+    "ccr_mean": 0.69,
+    "ccr_median": 0.0,
+    "coupling_mean": 0.44,
+    "depth_mean": 0.25,
+    "density_mean": 7.15,
+    "topology": {
+      "chain": 13,
+      "tree": 2,
+      "drift": 1
+    },
+    "loop_pct": 0.0,
+    "failure_types": {
+      "local_patch_only": 4,
+      "overlong_but_shallow": 3,
+      "surface_marker_only": 2
+    },
+    "answer_change": {
+      "none": 11,
+      "intermediate": 3,
+      "final": 2
+    },
+    "planning_mean": 1.38,
+    "plan_exec_mean": 1.38,
+    "divergent_mean": 0.69,
+    "templated_divergence_count": 2,
+    "creative_destruction_count": 0
+  },
+  "glm": {
+    "n": 16,
+    "ccr_mean": 1.81,
+    "ccr_median": 2.0,
+    "coupling_mean": 0.94,
+    "depth_mean": 0.62,
+    "density_mean": 6.0,
+    "topology": {
+      "chain": 8,
+      "loop": 6,
+      "tree": 2
+    },
+    "loop_pct": 37.5,
+    "failure_types": {
+      "local_patch_only": 7,
+      "no_answer_change": 1,
+      "redundant_check": 1,
+      "surface_marker_only": 1
+    },
+    "answer_change": {
+      "none": 10,
+      "intermediate": 4,
+      "final": 2
+    },
+    "planning_mean": 1.94,
+    "plan_exec_mean": 2.31,
+    "divergent_mean": 0.94,
+    "templated_divergence_count": 4,
+    "creative_destruction_count": 1
+  },
+  "claude46_ti": {
+    "n": 19,
+    "ccr_mean": 0.11,
+    "ccr_median": 0,
+    "coupling_mean": 0.05,
+    "depth_mean": 0.0,
+    "density_mean": 3.47,
+    "topology": {
+      "chain": 18,
+      "loop": 1
+    },
+    "loop_pct": 5.3,
+    "failure_types": {
+      "redundant_check": 9,
+      "no_answer_change": 4,
+      "surface_marker_only": 1
+    },
+    "answer_change": {
+      "none": 19
+    },
+    "planning_mean": 1.68,
+    "plan_exec_mean": 2.21,
+    "divergent_mean": 0.0,
+    "templated_divergence_count": 1,
+    "creative_destruction_count": 0
+  },
+  "claude47_ti": {
+    "n": 13,
+    "ccr_mean": 0.85,
+    "ccr_median": 0,
+    "coupling_mean": 0.54,
+    "depth_mean": 0.46,
+    "density_mean": 4.32,
+    "topology": {
+      "chain": 11,
+      "loop": 2
+    },
+    "loop_pct": 15.4,
+    "failure_types": {
+      "overlong_but_shallow": 3,
+      "surface_marker_only": 3,
+      "local_patch_only": 2,
+      "no_answer_change": 1
+    },
+    "answer_change": {
+      "none": 9,
+      "final": 2,
+      "intermediate": 2
+    },
+    "planning_mean": 1.77,
+    "plan_exec_mean": 2.15,
+    "divergent_mean": 0.38,
+    "templated_divergence_count": 1,
+    "creative_destruction_count": 1
+  },
+  "nohurry_opus": {
+    "n": 15,
+    "ccr_mean": 0.33,
+    "ccr_median": 0,
+    "coupling_mean": 0.13,
+    "depth_mean": 0.2,
+    "density_mean": 10.12,
+    "topology": {
+      "chain": 13,
+      "tree": 1,
+      "loop": 1
+    },
+    "loop_pct": 6.7,
+    "failure_types": {
+      "surface_marker_only": 4,
+      "no_answer_change": 3,
+      "local_patch_only": 1,
+      "overlong_but_shallow": 1
+    },
+    "answer_change": {
+      "none": 14,
+      "intermediate": 1
+    },
+    "planning_mean": 1.2,
+    "plan_exec_mean": 1.6,
+    "divergent_mean": 0.27,
+    "templated_divergence_count": 2,
+    "creative_destruction_count": 0
+  },
+  "gemini": {
+    "n": 4,
+    "ccr_mean": 1.25,
+    "ccr_median": 1.0,
+    "coupling_mean": 0.75,
+    "depth_mean": 0.75,
+    "density_mean": 4.07,
+    "topology": {
+      "chain": 4
+    },
+    "loop_pct": 0.0,
+    "failure_types": {
+      "surface_marker_only": 2,
+      "overlong_but_shallow": 1
+    },
+    "answer_change": {
+      "none": 3,
+      "final": 1
+    },
+    "planning_mean": 1.75,
+    "plan_exec_mean": 2.0,
+    "divergent_mean": 0.5,
+    "templated_divergence_count": 1,
+    "creative_destruction_count": 0
+  }
+}

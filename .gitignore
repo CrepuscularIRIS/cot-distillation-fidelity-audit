@@ -1,0 +1,44 @@
+# --- secrets: never commit ---
+.env
+.env.*
+!.env.example
+*.key
+*.pem
+credentials.json
+
+# --- python ---
+__pycache__/
+*.py[cod]
+*.egg-info/
+.eggs/
+build/
+dist/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# --- large / raw intermediates (results are committed pre-aggregated) ---
+# multi-GB pairing index
+outputs/*_uid_index.json
+# embeds raw problem+trace text
+outputs/matched_pairs.jsonl
+# raw trace text staged for judging
+outputs/batches/
+# raw per-batch panel judge outputs
+outputs/panel/
+# raw per-batch judge outputs
+outputs/*_scores/
+# logs
+outputs/*.log
+outputs/*.out
+outputs/*.nohup
+outputs/*.bak
+
+# --- model weights & source datasets (fetched separately) ---
+models/
+data/
+*.safetensors
+*.gguf
+*.bin

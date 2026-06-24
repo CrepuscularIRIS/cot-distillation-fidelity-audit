@@ -1,0 +1,22 @@
+[build-system]
+requires = ["setuptools>=64"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "distill-audit"
+version = "0.1.0"
+description = "LLM-as-judge audit of critique-correction closure in CoT distillation datasets"
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+dependencies = []   # the audit core uses only the stdlib (urllib, json, math); judges are HTTP
+
+[project.optional-dependencies]
+# Re-running the LLM judge needs only stdlib + your judge endpoint; these are for analysis extras.
+analysis = []
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.ruff]
+line-length = 110
