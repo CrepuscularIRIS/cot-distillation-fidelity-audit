@@ -76,7 +76,7 @@ def main() -> None:
     # No trust_remote_code: qwen3_5 is built into transformers; never run repo code.
     tok = AutoTokenizer.from_pretrained(args.model_dir)
     model = AutoModelForCausalLM.from_pretrained(
-        args.model_dir, torch_dtype=torch.bfloat16, device_map="auto")
+        args.model_dir, torch_dtype=torch.bfloat16, device_map={"": 0})
     model.train(False)
     log.info("[%s] model loaded", args.tag)
 
