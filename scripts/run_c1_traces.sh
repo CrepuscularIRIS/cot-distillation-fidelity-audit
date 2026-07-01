@@ -4,9 +4,9 @@
 set -euo pipefail
 
 cd /home/lingxufeng/huggingface/cot-distillation-fidelity-audit
-MODELS_DIR=/home/lingxufeng/huggingface/models
+MODELS_DIR=/data/huggingface/models
 LOG=outputs/c1_trace_gen.log
-export CUDA_VISIBLE_DEVICES=0
+export CUDA_VISIBLE_DEVICES=1
 
 echo "=== C1 trace generation started $(date) ===" | tee -a "$LOG"
 
